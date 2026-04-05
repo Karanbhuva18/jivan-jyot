@@ -1,0 +1,30 @@
+# Ignore all node_modules everywhere
+node_modules/
+**/node_modules/
+
+# Logs
+*.log
+
+# Build folders
+dist/
+build/
+frontend/dist/
+backend/dist/
+
+# Env files
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Electron build (if you generate later)
+dist/
+electron/dist/
+
+.exe

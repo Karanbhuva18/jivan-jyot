@@ -1,0 +1,503 @@
+/* ── Page ─────────────────────────────────────────────────── */
+.cp-page {
+  font-family: "Segoe UI", "Calibri", sans-serif;
+  background: #f0f4f8;
+  max-height: 100%;
+  width: 100%;
+  padding: 24px;
+  color: #1a2e44;
+  overflow: auto;
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+.cp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.cp-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a3c5e;
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+.cp-case-tag {
+  background: #1a3c5e;
+  color: #fff;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* ── Card ────────────────────────────────────────────────── */
+.cp-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(26, 60, 94, 0.09);
+  padding: 22px 24px;
+  margin-bottom: 16px;
+}
+
+.cp-section-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1a3c5e;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 14px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #e8f0fe;
+}
+
+/* ── Grid ────────────────────────────────────────────────── */
+.cp-grid3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  row-gap: 14px;
+}
+
+.cp-span-full {
+  grid-column: 1 / -1;
+}
+
+.cp-span2 {
+  grid-column: span 2;
+}
+
+/* ── Field Group ─────────────────────────────────────────── */
+.cp-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cp-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #5a7a9a;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+/* ── Inputs ──────────────────────────────────────────────── */
+.cp-input {
+  border: 1.5px solid #d0dce8;
+  border-radius: 7px;
+  padding: 8px 11px;
+  font-size: 13px;
+  color: #1a2e44;
+  background: #f8fafc;
+  outline: none;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: "Segoe UI", "Calibri", sans-serif;
+  appearance: auto;
+  -webkit-appearance: auto;
+  padding-right: 8px;
+}
+
+.cp-input:focus {
+  border-color: #1a3c5e;
+  background: #fff;
+}
+input[type="date"].cp-input {
+  background: #f8fafc;
+  color: #1a2e44;
+  color-scheme: light;
+}
+
+input[type="date"].cp-input:focus {
+  background: #fff;
+}
+
+.cp-input-readonly {
+  border: 1.5px solid #e0e8f0;
+  border-radius: 7px;
+  padding: 8px 11px;
+  font-size: 13px;
+  color: #888;
+  background: #f0f4f8;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: "Segoe UI", "Calibri", sans-serif;
+}
+
+.cp-select {
+  border: 1.5px solid #d0dce8;
+  border-radius: 7px;
+  padding: 8px 11px;
+  font-size: 13px;
+  color: #1a2e44;
+  background: #f8fafc;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-family: "Segoe UI", "Calibri", sans-serif;
+}
+
+.cp-select:focus {
+  border-color: #1a3c5e;
+  background: #fff;
+}
+
+.cp-textarea {
+  border: 1.5px solid #d0dce8;
+  border-radius: 7px;
+  padding: 8px 11px;
+  font-size: 13px;
+  color: #1a2e44;
+  background: #f8fafc;
+  outline: none;
+  resize: vertical;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 60px;
+  font-family: "Segoe UI", "Calibri", sans-serif;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+
+.cp-textarea:focus {
+  border-color: #1a3c5e;
+  background: #fff;
+}
+
+/* ── Age row ─────────────────────────────────────────────── */
+.cp-age-row {
+  display: flex;
+  gap: 6px;
+}
+
+.cp-age-row .cp-input {
+  flex: 1;
+}
+
+.cp-age-row .cp-select {
+  width: 80px;
+}
+
+/* ── Radio / Sex pills ───────────────────────────────────── */
+.cp-radio-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding-top: 6px;
+}
+
+.cp-radio-btn {
+  padding: 7px 18px;
+  border-radius: 20px;
+  border: 1.5px solid #d0dce8;
+  background: #f8fafc;
+  color: #5a7a9a;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.cp-radio-btn.active {
+  border-color: #1a3c5e;
+  background: #1a3c5e;
+  color: #fff;
+}
+
+/* ── Billing layout ──────────────────────────────────────── */
+.cp-billing-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* ── Billing table ───────────────────────────────────────── */
+.cp-billing-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cp-billing-table thead th {
+  background: #1a3c5e;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 7px 10px;
+  text-align: left;
+  letter-spacing: 0.5px;
+}
+
+.cp-billing-table thead th:nth-child(2),
+.cp-billing-table thead th:nth-child(3) {
+  width: 60px;
+  text-align: center;
+}
+
+.cp-billing-table thead th:nth-child(4) {
+  width: 70px;
+  text-align: center;
+}
+
+.cp-billing-table tbody tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+.cp-bill-td-label {
+  padding: 5px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #5a7a9a;
+  border-bottom: 1px solid #edf2f7;
+  white-space: nowrap;
+}
+
+.cp-bill-td {
+  padding: 5px 8px;
+  font-size: 13px;
+  border-bottom: 1px solid #edf2f7;
+  color: #1a2e44;
+}
+
+.cp-bill-td.total-col {
+  font-weight: 600;
+  color: #1a3c5e;
+}
+
+.cp-bill-input {
+  border: 1px solid #d0dce8;
+  border-radius: 5px;
+  padding: 4px 7px;
+  font-size: 12px;
+  width: 60px;
+  text-align: center;
+  background: #f8fafc;
+  outline: none;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+  transition: border-color 0.15s;
+  color: #1a2e44;
+}
+
+.cp-bill-input:focus {
+  border-color: #1a3c5e;
+  background: #fff;
+}
+
+.cp-bill-total-row {
+  background: #e8f0fe;
+}
+
+.cp-bill-total-row .cp-bill-td-label {
+  color: #1a3c5e;
+  font-weight: 700;
+}
+
+.cp-bill-total-row .cp-bill-td {
+  font-weight: 800;
+  color: #1a3c5e;
+  font-size: 14px;
+}
+
+/* ── Bill Info (right panel) ─────────────────────────────── */
+.cp-bill-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+}
+
+.cp-bill-info-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cp-bill-info-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #5a7a9a;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  min-width: 70px;
+}
+
+.cp-bill-info-input {
+  flex: 1;
+  border: 1.5px solid #d0dce8;
+  border-radius: 7px;
+  padding: 7px 11px;
+  font-size: 13px;
+  background: #f8fafc;
+  outline: none;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+  transition: border-color 0.2s;
+}
+
+.cp-bill-info-input:focus {
+  border-color: #1a3c5e;
+  background: #fff;
+}
+
+.cp-bill-info-readonly {
+  flex: 1;
+  border: 1.5px solid #e0e8f0;
+  border-radius: 7px;
+  padding: 7px 11px;
+  font-size: 13px;
+  background: #f0f4f8;
+  color: #888;
+  outline: none;
+  box-sizing: border-box;
+  font-weight: 700;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.cp-bill-info-readonly.remain-due {
+  color: #c0392b;
+}
+
+.cp-bill-info-readonly.remain-clear {
+  color: #27ae60;
+}
+
+/* ── Divider ─────────────────────────────────────────────── */
+.cp-divider {
+  height: 1px;
+  background: #e8f0fe;
+  margin: 4px 0;
+}
+
+/* ── Action Buttons ──────────────────────────────────────── */
+.cp-btn-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.cp-btn-row {
+  display: flex;
+  gap: 8px;
+}
+
+.cp-btn {
+  padding: 9px 22px;
+  border-radius: 8px;
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.4px;
+  transition:
+    opacity 0.15s,
+    transform 0.12s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.cp-btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.cp-btn:active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.cp-btn-save {
+  background: #27ae60;
+  color: #fff;
+  flex: 1;
+}
+
+.cp-btn-clear {
+  background: #95a5a6;
+  color: #fff;
+  flex: 1;
+}
+
+.cp-btn-print {
+  background: #e67e22;
+  color: #fff;
+  width: 100%;
+}
+
+.cp-btn-small-print {
+  background: #1a3c5e;
+  color: #fff;
+  width: 100%;
+}
+
+.billing-cell {
+  padding: 6px 12px;
+}
+
+.billing-input {
+  width: 100%;
+  height: 36px;
+  padding: 6px 8px;
+  background-color: #ffffff;
+  color: #1a2e44;
+  border: 2px solid #243b55;
+  border-radius: 6px;
+}
+
+.billing-input:focus {
+  border: 2px solid #2c5aa0;
+}
+
+.billing-total {
+  text-align: center;
+  font-weight: 600;
+  color: #1a2e44;
+}
+
+.total-value {
+  display: inline-block;
+  min-width: 40px;
+}
+
+.billing-label {
+  font-weight: 500;
+  color: #1a2e44;
+  padding: 7px 10px;
+}
+.grand-total {
+  color: #243b55;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 7px 10px;
+}
+.grand-total-value {
+  text-align: center;
+}
+.btn-contianer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.other-option {
+  background-color: #e0e8f0;
+  color: #1a2e44;
+  border: 2px solid #1a2e44;
+}
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-datepicker__input-container input {
+  width: 100%;
+}

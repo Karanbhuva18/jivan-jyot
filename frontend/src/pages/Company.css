@@ -1,0 +1,27 @@
+.company-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.add-company-btn{
+background:#2f80ed;
+color:white;
+border:none;
+padding:8px 14px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.company-table{
+width:100%;
+border-collapse:collapse;
+}
+
+.company-table th,
+.company-table td{
+border:1px solid #ddd;
+padding:8px;
+text-align:left;
+}

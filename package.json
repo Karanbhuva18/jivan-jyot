@@ -1,0 +1,51 @@
+{
+  "name": "doctor-clinic-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "electron/main.js",
+  "build": {
+    "appId": "com.doctor.clinic",
+    "productName": "Jivan Jyot",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "electron/**/*",
+      "frontend/dist/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "./backend",
+        "to": "backend"
+      }
+    ],
+    "win": {
+      "target": "nsis"
+    }
+  },
+  "scripts": {
+    "backend": "cd backend && npm run dev",
+    "frontend": "cd frontend && npm run dev",
+    "electron": "electron .",
+    "build-react": "cd frontend && npm run build",
+    "build-app": "npm run build-react && electron-builder",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\" \"npm run electron\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "electron": "^40.7.0",
+    "electron-builder": "^25.1.8"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.6.2",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "sequelize": "^6.37.8",
+    "sqlite3": "^5.1.7"
+  }
+}
