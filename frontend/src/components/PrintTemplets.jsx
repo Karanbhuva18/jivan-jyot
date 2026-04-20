@@ -110,7 +110,7 @@ export const buildPrintHTML = (patients, filters, companiesData) => {
       color: #111;
       background: #fff;
       padding: 24px 32px;
-      min-height: 100vh;
+      height: 100vh;        /* ← change min-height to height */
       display: flex;
       flex-direction: column;
     }
@@ -118,8 +118,18 @@ export const buildPrintHTML = (patients, filters, companiesData) => {
     /* ── MAIN CONTENT — grows to fill available space ── */
     .main-content {
       flex: 1;
+      display: flex;          
+      flex-direction: column; 
     }
-
+.table-wrapper {
+  flex: 1;                 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+  .table-wrapper table {
+  flex-shrink: 0;
+}
     /* ── CLINIC HEADER — logo left, text centered ── */
     .clinic-header {
       display: flex;
@@ -267,6 +277,7 @@ export const buildPrintHTML = (patients, filters, companiesData) => {
       font-size: 10px;
       color: #9ca3af;
       margin-top: auto;
+      padding-top: 20px;
     }
     .sig-line {
       margin-top: 36px;
@@ -294,12 +305,27 @@ export const buildPrintHTML = (patients, filters, companiesData) => {
     }
     .btn-print { background: #2563eb; color: #fff; border: none; }
     .btn-close  { background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; }
+tfoot tr {
+      background: #1d4ed8;
+      color: #fff;
+    }
+    tfoot td {
+      padding: 8px 10px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border: none;
+    }
+      table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
 
-    /* ── PRINT STYLES ── */
     @media print {
+    .main-content {
+    min-height: calc(100vh - 80px);
+  }
       body {
         padding: 14px 18px;
-        min-height: 100vh;
+        height: 100vh;
       }
       @page { margin: 0.4cm; size: A4; }
       .toolbar { display: none !important; }
@@ -344,6 +370,7 @@ export const buildPrintHTML = (patients, filters, companiesData) => {
     }
 
     <!-- TABLE -->
+    <div class="table-wrapper">
     <table>
       <thead>
         <tr>
@@ -355,23 +382,30 @@ export const buildPrintHTML = (patients, filters, companiesData) => {
         </tr>
       </thead>
       <tbody>${rows}</tbody>
+      
     </table>
+    <table>
+    <tfoot>
+        <tr>
+          <td></td>
+          <td></td>
+          <td style="font-size:11px;font-weight:800;color:#fff;">Total Patients: ${patients.length}</td>
+          <td></td>
+          <td style="text-align:right;font-size:11px;font-weight:800;color:#fff;">&#8377;${totalAmount.toLocaleString("en-IN")}</td>
+        </tr>
+      </tfoot>
+    </table>
+    </div>
 
   </div>
   <!-- end .main-content -->
 
   <!-- TOTALS — outside main-content, sits above footer -->
-  <div class="totals-row">
-    <div class="totals-box">
-      Total Amount:
-      <span>&#8377;${totalAmount.toLocaleString("en-IN")}</span>
-    </div>
-  </div>
+  
 
   <!-- FOOTER — always at bottom of page -->
   <div class="footer">
     <div>
-      <div class="sig-line">${DOCTORS[filters.dr]?.name || ""}</div>
     </div>
     <div style="text-align:right;">
       This is a computer-generated report.<br/>

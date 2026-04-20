@@ -114,7 +114,7 @@ export const getPatientData = async (req, res) => {
       where: whereCondition,
       limit: parseInt(limit),
       offset: parseInt(offset),
-      order: [["date", "DESC"]],
+      order: [["date", "ASC"]],
     });
 
     res.status(200).json({

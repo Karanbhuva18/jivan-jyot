@@ -13,11 +13,11 @@ const Sidebar = () => {
 
       {/* Navigation */}
       <nav className="nav-links">
+        <NavLink to="/company-patient">Company Patient</NavLink>
+
         <NavLink to="/" end>
           Patient Report
         </NavLink>
-
-        <NavLink to="/company-patient">Company Patient</NavLink>
 
         <NavLink to="/company">Company</NavLink>
       </nav>

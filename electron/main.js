@@ -198,6 +198,8 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
+    title: "JivanJyot", // ← Add this
+    icon: path.join(__dirname, "../frontend/public/logo.png"),
     // FIX 7: Show the window only after it's ready to prevent a white flash
     show: false,
     webPreferences: {
@@ -334,7 +336,7 @@ ipcMain.handle(
   async (_event, { htmlContent, silent = false, preview = false }) => {
     return new Promise((resolve) => {
       const printWin = new BrowserWindow({
-        show: preview,          // show window when preview = true
+        show: preview, // show window when preview = true
         width: 960,
         height: 760,
         title: "Print Preview",
@@ -367,7 +369,7 @@ ipcMain.handle(
           // silent = true   → skip dialog, print directly to deviceName
           printWin.webContents.print(
             {
-              silent,               // false = show OS print dialog
+              silent, // false = show OS print dialog
               printBackground: true,
               pageSize: "A4",
               margins: {
