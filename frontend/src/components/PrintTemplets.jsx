@@ -152,6 +152,7 @@ export const buildPrintHTML = (patients, filters, companiesData) => {
       height: 90px;
       object-fit: contain;
       border-radius: 8px;
+      margin-left:50px
     }
     .clinic-header-content {
       flex: 1;
@@ -355,7 +356,7 @@ tfoot tr {
 
     <!-- PRINT META -->
     <div class="print-meta">
-      <span>Printed: ${new Date().toLocaleString("en-IN")}</span>
+      <span></span>
       <span>Total Records: <b>${patients.length}</b></span>
     </div>
 

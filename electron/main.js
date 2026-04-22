@@ -195,11 +195,14 @@ function forkBackend() {
 // ─── Window ───────────────────────────────────────────────────────────────────
 
 function createWindow() {
+  const iconPath = isDev
+    ? path.join(__dirname, "../frontend/public/logo.png")
+    : path.join(process.resourcesPath, "logo.png");
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
     title: "JivanJyot", // ← Add this
-    icon: path.join(__dirname, "../frontend/public/logo.png"),
+    icon: iconPath,
     // FIX 7: Show the window only after it's ready to prevent a white flash
     show: false,
     webPreferences: {

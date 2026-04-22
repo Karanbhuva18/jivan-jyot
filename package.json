@@ -17,10 +17,20 @@
       {
         "from": "./backend",
         "to": "backend"
+      },
+      {
+        "from": "frontend/public/logo.png",
+        "to": "logo.png"
       }
     ],
     "win": {
-      "target": "nsis"
+      "target": "nsis",
+      "icon": "frontend/public/logo.ico"
+    },
+    "nsis": {
+      "installerIcon": "frontend/public/logo.ico",
+      "uninstallerIcon": "frontend/public/logo.ico",
+      "installerHeaderIcon": "frontend/public/logo.ico"
     }
   },
   "scripts": {
