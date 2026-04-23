@@ -24,6 +24,11 @@ export const createCompany = async (data) => {
   return res.data;
 };
 
+export const deleteCompany = async (id) => {
+  const res = await API.delete(`/deleteCompany/${id}`);
+  return res.data;
+};
+
 export const getPatients = async (params) => {
   const res = await API.get("/getPatient", { params });
   return res.data;

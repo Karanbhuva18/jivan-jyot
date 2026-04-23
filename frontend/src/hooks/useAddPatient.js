@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   addPatient,
   createCompany,
+  deleteCompany,
   deletePatient,
   getCompanies,
   getPatients,
@@ -56,6 +57,17 @@ export const useDeletePatient = (filters) => {
 
     onSuccess: () => {
       queryClient.invalidateQueries(["patients", filters]);
+    },
+  });
+};
+
+export const useDeleteCompany = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: deleteCompany,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["companies"]);
     },
   });
 };
