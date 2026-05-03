@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../components/Loader.jsx";
 import { buildPrintHTML } from "../components/PrintTemplets.jsx";
 import toast from "react-hot-toast";
+import { getPatients } from "../api/patientApi.js";
 
 const openPrintWindow = (html, preview = false) => {
   const win = window.open("", "_blank", "width=960,height=720,scrollbars=yes");
@@ -56,6 +57,7 @@ const PatientReport = () => {
 
   const patients = data?.data || [];
   const [companiesData, setCompaniesData] = useState([]);
+  const [printLoading, setPrintLoading] = useState(false);
   useEffect(() => {
     if (companies?.data?.length > 0) {
       setCompaniesData(
@@ -64,20 +66,35 @@ const PatientReport = () => {
     }
   }, [companies]);
 
-  const handlePrint = () => {
-    if (patients.length === 0) {
-      toast.success("No patients found to print.");
-      return;
+  const fetchAllPatients = async () => {
+    setPrintLoading(true);
+    try {
+      const json = await getPatients({ ...filters, page: 1, limit: 9999 });
+      return json.data || [];
+    } catch (err) {
+      toast.error("Failed to fetch patients for print.");
+      return [];
+    } finally {
+      setPrintLoading(false);
     }
-    openPrintWindow(buildPrintHTML(patients, filters, companiesData), false);
   };
 
-  const handlePreview = () => {
-    if (patients.length === 0) {
+  const handlePrint = async () => {
+    const allPatients = await fetchAllPatients();
+    if (allPatients.length === 0) {
       toast.success("No patients found to print.");
       return;
     }
-    openPrintWindow(buildPrintHTML(patients, filters, companiesData), true);
+    openPrintWindow(buildPrintHTML(allPatients, filters, companiesData), false);
+  };
+
+  const handlePreview = async () => {
+    const allPatients = await fetchAllPatients();
+    if (allPatients.length === 0) {
+      toast.success("No patients found to print.");
+      return;
+    }
+    openPrintWindow(buildPrintHTML(allPatients, filters, companiesData), true);
   };
 
   const handleEdit = (patient) =>
@@ -169,6 +186,7 @@ const PatientReport = () => {
         {/* 👁️ PREVIEW */}
         <button
           onClick={handlePreview}
+          disabled={noDoctorSelected || printLoading}
           title={noDoctorSelected ? "Select a doctor first" : "Preview report"}
           style={{
             padding: "6px 16px",
@@ -176,30 +194,34 @@ const PatientReport = () => {
             color: noDoctorSelected ? "#9ca3af" : "#374151",
             border: "1px solid #d1d5db",
             borderRadius: "6px",
-            cursor: noDoctorSelected ? "not-allowed" : "pointer",
+            cursor:
+              noDoctorSelected || printLoading ? "not-allowed" : "pointer",
             fontWeight: 600,
             height: "34px",
           }}
         >
-          👁️ Preview
+          {printLoading ? "Loading..." : "👁️ Preview"}
         </button>
 
         {/* 🖨️ PRINT */}
         <button
           onClick={handlePrint}
+          disabled={noDoctorSelected || printLoading}
           title={noDoctorSelected ? "Select a doctor first" : "Print report"}
           style={{
             padding: "6px 16px",
-            background: noDoctorSelected ? "#93c5fd" : "#2563eb",
+            background:
+              noDoctorSelected || printLoading ? "#93c5fd" : "#2563eb",
             color: "#fff",
             border: "none",
             borderRadius: "6px",
-            cursor: noDoctorSelected ? "not-allowed" : "pointer",
+            cursor:
+              noDoctorSelected || printLoading ? "not-allowed" : "pointer",
             fontWeight: 600,
             height: "34px",
           }}
         >
-          🖨️ Print
+          {printLoading ? "Loading..." : "🖨️ Print"}
         </button>
       </div>
 

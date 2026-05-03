@@ -29,6 +29,11 @@ export const deleteCompany = async (id) => {
   return res.data;
 };
 
+export const updateCompany = async (id, payload) => {
+  const res = await API.put(`/updateCompany/${id}`, payload);
+  return res.data;
+}
+
 export const getPatients = async (params) => {
   const res = await API.get("/getPatient", { params });
   return res.data;

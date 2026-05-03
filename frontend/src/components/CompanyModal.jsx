@@ -1,31 +1,50 @@
 import { useState } from "react";
-import { useCreateCompany } from "../hooks/useAddPatient.js";
+import { useCreateCompany, useUpdateCompany } from "../hooks/useAddPatient.js";
 import "./CompanyModal.css";
 import toast from "react-hot-toast";
 
-const CompanyModal = ({ close }) => {
-  const { mutate, isPending } = useCreateCompany();
+const CompanyModal = ({ close, editData }) => {
+  const { mutate: createCompany, isPending: isCreating } = useCreateCompany();
+  const { mutate: updateCompany, isPending: isUpdating } = useUpdateCompany();
+
+  const isPending = isCreating || isUpdating;
 
   const [form, setForm] = useState({
-    name: "",
-    authorizedPersonName: "",
-    address: "",
-    contact: "",
+    name: editData?.name || "",
+    authorizedPersonName: editData?.authorizedPersonName || "",
+    address: editData?.address || "",
+    contact: editData?.contact || "",
   });
 
   const set = (key, val) => setForm((f) => ({ ...f, [key]: val }));
 
   const handleSubmit = () => {
-    mutate(form, {
-      onSuccess: () => {
-        toast.success("✅ Company created successfully");
-        if (document.activeElement) document.activeElement.blur();
-        close();
-      },
-      onError: (err) => {
-        toast.error(err.response?.data?.message || "❌ Error creating company");
-      },
-    });
+    if (editData) {
+      updateCompany(
+        { id: editData.id, payload: form },
+        {
+          onSuccess: () => {
+            toast.success("✅ Company updated successfully");
+            if (document.activeElement) document.activeElement.blur();
+            close();
+          },
+          onError: (err) => {
+            toast.error(err.response?.data?.message || "❌ Error updating company");
+          },
+        }
+      );
+    } else {
+      createCompany(form, {
+        onSuccess: () => {
+          toast.success("✅ Company created successfully");
+          if (document.activeElement) document.activeElement.blur();
+          close();
+        },
+        onError: (err) => {
+          toast.error(err.response?.data?.message || "❌ Error creating company");
+        },
+      });
+    }
   };
 
   const handleClose = () => {
@@ -36,7 +55,7 @@ const CompanyModal = ({ close }) => {
   return (
     <div className="modal-overlay">
       <div className="modal">
-        <h3>Add Company</h3>
+        <h3>{editData ? "Edit Company" : "Add Company"}</h3>
 
         <input
           placeholder="Company Name"
@@ -61,7 +80,7 @@ const CompanyModal = ({ close }) => {
 
         <div className="modal-buttons">
           <button onClick={handleSubmit} disabled={isPending}>
-            {isPending ? "Saving..." : "Save"}
+            {isPending ? "Saving..." : editData ? "Update" : "Save"}
           </button>
           <button onClick={handleClose}>Cancel</button>
         </div>

@@ -6,6 +6,7 @@ import {
   deletePatient,
   getCompanies,
   getPatients,
+  updateCompany,
   updatePatient,
 } from "../api/patientApi";
 
@@ -66,6 +67,17 @@ export const useDeleteCompany = () => {
 
   return useMutation({
     mutationFn: deleteCompany,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["companies"]);
+    },
+  });
+};
+
+export const useUpdateCompany = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({ id, payload }) => updateCompany(id, payload),
     onSuccess: () => {
       queryClient.invalidateQueries(["companies"]);
     },

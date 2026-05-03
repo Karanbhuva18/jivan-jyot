@@ -25,3 +25,9 @@ border:1px solid #ddd;
 padding:8px;
 text-align:left;
 }
+
+.action-buttons{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
